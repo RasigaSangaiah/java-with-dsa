@@ -1,23 +1,35 @@
-public class palindrome {
+import java.util.*;
 
+public class palindrome {
     public static void main(String[] args) {
 
-        String str="madam";
-        int left=0;
-        int right=str.length()-1;
-        boolean ispali=true;
-        while(left<right){
-            if(str.charAt(left)!=str.charAt(right)){
-                ispali=false;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String str = sc.nextLine();
+
+        Stack<Character> stack = new Stack<>();
+
+        // Push all characters into the stack
+        for (int i = 0; i < str.length(); i++) {
+            stack.push(str.charAt(i));
+        }
+
+        boolean palindrome = true;
+
+        // Compare original string with stack
+        for (int i = 0; i < str.length(); i++) {
+
+            char ch = stack.pop();
+
+            if (str.charAt(i) != ch)   {
+                palindrome = false;
                 break;
             }
-            left++;
-            right--;
         }
-        if(ispali){
+
+        if (palindrome) {
             System.out.println("Palindrome");
-        }
-        else{
+        } else {
             System.out.println("Not Palindrome");
         }
     }
